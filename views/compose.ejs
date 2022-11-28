@@ -3,8 +3,13 @@
 <h1>Compose</h1>
 
 <form action="/compose" method="POST">
+    <label for="postTitle">Title</label>
     <input type="text" name="newPost" id="postTitle" autocomplete="off">
-    <button type="submit">Publish</button>
+
+    <label for="postContent">Post</label>
+    <input type="textarea" name="postContent" id="postContent">
+
+    <button class="btn btn-primary" type="submit">Publish</button>
 </form>
 
 <%- include('partials/footer.ejs') %>
