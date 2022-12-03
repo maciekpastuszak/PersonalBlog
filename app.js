@@ -46,13 +46,15 @@ app.post('/compose', (req,res) => {
 });
 
 app.get("/posts/:id", (req,res) => {
-  let postId = req.params.id;
+  let postId = _.lowerCase(req.params.postTitle);
+
   posts.forEach(function(post){
-    const storedTitle = post.title;
+    const storedTitle = _.lowerCase(post.title);
     if ( storedTitle === postId) {
-      _.lowerCase([postId])
-      console.log(postId);
-      console.log("Match found");
+     res.render("post", {
+      title: post.title,
+      content: post.content
+     })
     }
   })
   
