@@ -19,7 +19,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/", (req,res) => {
-  res.render("home", {startingContent: homeStartingContent, posts: posts});
+  res.render("home", {
+    startingContent: homeStartingContent,
+    posts: posts
+    });
 })
 
 app.get("/about", (req,res) => {
@@ -35,18 +38,17 @@ app.get("/compose", (req,res) => {
 })
 
 app.post('/compose', (req,res) => {
-  let postTitle = req.body.postTitle;
-  let postBody = req.body.postBody;
   let post = {
-    title: postTitle,
-    body: postBody
+    title: req.body.postTitle,
+    content: req.body.postBody
   };
   posts.push(post);
+
   res.redirect("/");
 });
 
-app.get("/posts/:id", (req,res) => {
-  let requestedTitle = _.lowerCase(req.params.postTitle);
+app.get("/posts/:postName", (req,res) => {
+  let requestedTitle = _.lowerCase(req.params.postName);
 
   posts.forEach(function(post){
     const storedTitle = _.lowerCase(post.title);
