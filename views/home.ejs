@@ -4,9 +4,10 @@
 
 <p><%= startingContent %></p>
 
-<% posts.forEach(element => { %>
-    <h1><%= element.title %></h1>
-    <p><%= element.body %></p>
+<% posts.forEach(post => { %>
+    <h1><%= post.title %></h1>
+    <p><%= post.content.Substring(0, 100) + "..." %>
+    <a href="/posts/<%= post.title%>"></a></p>
 <% }); %>
 
 
